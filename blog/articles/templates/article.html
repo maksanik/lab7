@@ -1,0 +1,31 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+<title>Архив статей</title>
+    <link rel="stylesheet" href="{% static 'article.css' %}">
+</head>
+<body>
+<div class="header">
+    {% if logged %}
+    <h2><a href="/logout">Выйти из аккаунта</a></h2>
+    {% endif %}
+    {% if not logged %}
+    <h2><a href="/login">Войти</a></h2>
+    <h2><a href="/registration">Зарегистрироваться</a></h2>
+    {% endif %}
+    <img src="{% static 'bmw.png' %}">
+</div>
+<div class="article">
+<div class="one-post">
+    <h2 class="post-title"><a href="/article/{{ post.id }}">{{ post.title }}</a></h2>
+    <div class="article-info">
+    <div class="article-author">{{ post.author.username }}</div>
+    <div class="article-created-date">{{ post.created_date }}</div>
+    </div>
+    <p class="article-text">{{ post.get_excerpt }}</p>
+    <a href="/">Вернуться назад</a>
+</div>
+</div>
+</body>
+</html>
